@@ -1,7 +1,6 @@
 from model.crm import crm
 from view import terminal as view
 
-
 def list_customers():
     view.print_error_message("Not implemented yet.")
 
@@ -19,8 +18,12 @@ def delete_customer():
 
 
 def get_subscribed_emails():
-    view.print_error_message("Not implemented yet.")
-
+    users_list = crm.load_data()
+    subscribed_emails_list = list()
+    for user in users_list:
+        if user[3] == "1":
+            subscribed_emails_list.append(user[2])
+    return subscribed_emails_list
 
 def run_operation(option):
     if option == 1:
