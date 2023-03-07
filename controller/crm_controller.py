@@ -21,9 +21,8 @@ def get_subscribed_emails():
     users_list = crm.load_data()
     subscribed_emails_list = list()
     for user in users_list:
-        if user[3] == "1":
-            subscribed_emails_list.append(user[2])
-    return subscribed_emails_list
+        user[3] == "1" and subscribed_emails_list.append(user[2])
+    view.print_general_results(subscribed_emails_list, "subscribed customers emails")
 
 def run_operation(option):
     if option == 1:
