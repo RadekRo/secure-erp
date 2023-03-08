@@ -1,7 +1,6 @@
 from view import terminal as view
 from controller import crm_controller, sales_controller, hr_controller
 
-
 def load_module(option):
     if option == 1:
         crm_controller.menu()

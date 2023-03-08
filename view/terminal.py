@@ -1,4 +1,4 @@
-COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "color_reset": "\u001b[0m"}
+COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "blue": "\u001b[34m", "color_reset": "\u001b[0m"}
 BOLD_TEXT = {"begin": "\033[1m", "end": "\033[0m"}
 
 def print_menu_header():
@@ -6,6 +6,11 @@ def print_menu_header():
 {COLORS['green']}     CUSTOMERS SYNC LIMITED COMPANY{COLORS['color_reset']}
 {COLORS['green']}      --- Internal Data System --- {COLORS['color_reset']}
 {COLORS['yellow']}========================================{COLORS['color_reset']}""")
+
+def print_result_header():
+    print(f"""{COLORS['blue']}========================================{COLORS['color_reset']}
+{COLORS['blue']}         YOUR OPERATION RESULT{COLORS['color_reset']}
+{COLORS['blue']}========================================{COLORS['color_reset']}""")
 
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
@@ -27,7 +32,6 @@ def print_menu(title, list_options):
     print(f"{COLORS['yellow']}0.{COLORS['color_reset']} { list_options[0] }")
 
 
-
 def print_message(message):
     """Prints a single message to the terminal.
 
@@ -43,6 +47,7 @@ def print_general_results(result, label):
     lists/tuples (like "@label: \n  @item1; @item2"), and dictionaries
     (like "@label \n  @key1: @value1; @key2: @value2")
     """
+    print_result_header()
     if isinstance(result, list):
         show_results = ', '.join(result)
         print(f"{label}:\n{show_results}")
@@ -69,7 +74,8 @@ def get_input(label):
     Args:
         label: str - the label before the user prompt
     """
-    pass
+    user_input = input(f"{ label }: ")
+    return user_input
 
 
 def get_inputs(labels):
