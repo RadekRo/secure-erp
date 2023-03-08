@@ -8,7 +8,7 @@ def print_menu_header():
 {COLORS['yellow']}========================================{COLORS['color_reset']}""")
 
 def print_result_header():
-    print(f"""{COLORS['blue']}========================================{COLORS['color_reset']}
+    print(f"""\n\n{COLORS['blue']}========================================{COLORS['color_reset']}
 {COLORS['blue']}         YOUR OPERATION RESULT{COLORS['color_reset']}
 {COLORS['blue']}========================================{COLORS['color_reset']}""")
 
