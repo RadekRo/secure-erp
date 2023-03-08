@@ -20,7 +20,7 @@ def display_menu():
                "Customer Relationship Management (CRM)",
                "Sales",
                "Human Resources"]
-    view.print_menu("Main menu", options)
+    view.print_menu("MAIN MENU", options)
 
 
 def menu():
