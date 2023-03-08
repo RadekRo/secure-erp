@@ -2,7 +2,11 @@ from model.crm import crm
 from view import terminal as view
 
 def list_customers():
-    view.print_error_message("Not implemented yet.")
+    data = crm.load_data()
+    customers_list = list()
+    for customer in data:
+        customers_list.append(customer[1])
+    view.print_general_results(customers_list, "List of all the customers")
 
 
 def add_customer():
