@@ -10,7 +10,7 @@ from controller import crm_controller
 #print(crm_controller.get_subscribed_emails())
 #print(crm_controller.get_subscribed_emails())
 print(crm_controller.get_subscribed_emails())
-
+main_controller.display_menu()
 #crm_controller.add_customer()
 
 #if __name__ == '__main__':

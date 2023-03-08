@@ -1,3 +1,12 @@
+COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "color_reset": "\u001b[0m"}
+BOLD_TEXT = {"begin": "\033[1m", "end": "\033[0m"}
+
+def print_menu_header():
+    print(f"""{COLORS['yellow']}=============================={COLORS['color_reset']}
+{COLORS['green']}CUSTOMERS SYNC LIMITED COMPANY{COLORS['color_reset']}
+{COLORS['green']} --- Internal Data System --- {COLORS['color_reset']}
+{COLORS['yellow']}=============================={COLORS['color_reset']}""")
+
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
 
@@ -11,6 +20,11 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
+    print_menu_header()
+    print(f"{BOLD_TEXT['begin']}{title}:{BOLD_TEXT['end']}\n")
+    print("""
+    """)
+
     pass
 
 
