@@ -2,11 +2,10 @@ from model.crm import crm
 from view import terminal as view
 
 def list_customers():
-    data = crm.load_data()
-    customers_list = list()
-    for customer in data:
-        customers_list.append(customer[1])
-    view.print_general_results(customers_list, "List of all the customers")
+    data = crm.load_data(1)
+    for line in data:
+        line.pop()
+    view.print_table(data)
 
 
 def add_customer():
