@@ -2,12 +2,10 @@ from model.crm import crm
 from view import terminal as view
 
 def list_customers():
-    data = crm.load_data()
+    data = crm.load_data(1)
     for line in data:
         line.pop()
-    enum = enumerate(data)
-    dictTable = dict((i, j) for i, j in enum)
-    view.print_table(dictTable)
+    view.print_table(data)
 
 
 def add_customer():
