@@ -3,10 +3,11 @@ from view import terminal as view
 
 def list_customers():
     data = crm.load_data()
-    customers_list = list()
-    for customer in data:
-        customers_list.append(customer[1])
-    view.print_general_results(customers_list, "List of all the customers")
+    for line in data:
+        line.pop()
+    enum = enumerate(data)
+    dictTable = dict((i, j) for i, j in enum)
+    view.print_table(dictTable)
 
 
 def add_customer():

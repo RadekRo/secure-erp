@@ -65,7 +65,17 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    print_result_header()
+
+    if isinstance(table, dict):
+        print("|{:<12}| {:<12}| {:<12}|".format('ID', 'NAME', 'E-MAIL'))
+        #lens = max(map(len, table.values()))
+        #max_lens = [k for k, v in table.items() if len(v) == lens]
+        for key, value in table.items():
+            id, name, email = value
+            #print("|","-"*len(max_lens),"|")
+            print("|{:<12}| {:<12}| {:<12}|".format(id, name, email))
+
 
 
 def get_input(label):
