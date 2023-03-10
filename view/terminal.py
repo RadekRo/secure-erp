@@ -66,15 +66,11 @@ def print_table(table):
         table: list of lists - the table to print out
     """
     print_result_header()
-
-    if isinstance(table, list):
-        s = [[str(e) for e in row] for row in table]
-        lens = [max(map(len, col)) for col in zip(*s)]
-        fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-        new_table = [fmt.format(*row) for row in s]
-        print('\n'.join(new_table))
-
-
+    s = [[str(e) for e in row] for row in table]
+    lens = [max(map(len, col)) for col in zip(*s)]
+    fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+    new_table = [fmt.format(*row) for row in s]
+    print('\n'.join(new_table))
 
 def get_input(label):
     """Gets single string input from the user.
