@@ -1,10 +1,19 @@
 COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "blue": "\u001b[34m", "color_reset": "\u001b[0m"}
 BOLD_TEXT = {"begin": "\033[1m", "end": "\033[0m"}
 
-def get_list_of_max_columns_width(table, padding):
-    calculate_max_columns_width = [max(map(len, column)) for column in zip(*table)]
-    add_padding_to_column = map(lambda x: x + 2*padding, calculate_max_columns_width)
-    return list(add_padding_to_column)
+def get_columns_width(table, padding):
+    columns_width = list([max(map(len, column)) for column in zip(*table)])
+    return list(map(lambda column: column + 2*padding, columns_width))
+
+def get_row_width(columns_width, number_of_columns):
+    return columns_width + number_of_columns + 1
+
+def get_column_format(columns_width, separator):
+    start, end = [separator] * 2
+    return start + separator.join("{{:^{}}}".format(width) for width in columns_width) + end
+
+def print_horizontal_line(row_width, structural_element):
+    print(structural_element * row_width)
 
 def print_menu_header():
     print(f"""{COLORS['yellow']}========================================{COLORS['color_reset']}
@@ -71,13 +80,13 @@ def print_table(table):
         table: list of lists - the table to print out
     """
     print_result_header()
-    # s = [[str(e) for e in row] for row in table]
-    # lens = [max(map(len, col)) for col in zip(*s)]
-    # fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-    # new_table = [fmt.format(*row) for row in s]
-    # print('\n'.join(new_table))
-    count_max_columns_width = get_list_of_max_columns_width(table, 1)
-    print(count_max_columns_width)
+    columns_width = get_columns_width(table, 1)
+    row_width = get_row_width(sum(columns_width), len(table[0]))
+    column_format = get_column_format(columns_width, "|")
+    for row in table:
+        print_horizontal_line(row_width, "-")
+        print(column_format.format(*row))
+    print_horizontal_line(row_width, "-")
 
 def get_input(label):
     """Gets single string input from the user.
