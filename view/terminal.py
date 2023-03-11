@@ -1,4 +1,4 @@
-COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "blue": "\u001b[34m", "color_reset": "\u001b[0m"}
+COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "blue": "\u001b[34m", "red": "\u001B[31m", "color_reset": "\u001b[0m"}
 BOLD_TEXT = {"begin": "\033[1m", "end": "\033[0m"}
 
 def get_columns_width(table, padding = 0):
@@ -113,4 +113,4 @@ def print_error_message(message):
     Args:
         message: str - the error message
     """
-    pass
+    print(f"{BOLD_TEXT['begin']}{COLORS['red']}{message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
