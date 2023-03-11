@@ -23,7 +23,8 @@ def print_menu_header():
     print(f"{COLORS['yellow']}" + "=" * 40 + f"{COLORS['color_reset']}")
 
 def print_result_header():
-    print(f"\n\n\n{COLORS['blue']}{BOLD_TEXT['begin']}\n:.: YOUR OPERATION RESULT \u2193")
+    print(f"\n\n\n{BOLD_TEXT['begin']}{COLORS['blue']}" + "-" * 27)
+    print(":.: YOUR OPERATION RESULT \u2193")
     print("-" * 27 + f"{COLORS['color_reset']}")
 
 def print_menu(title, list_options):
