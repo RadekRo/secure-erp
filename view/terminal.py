@@ -1,4 +1,4 @@
-COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "blue": "\u001b[34m", "red": "\u001B[31m", "color_reset": "\u001b[0m"}
+COLORS = {"yellow": "\u001b[33m", "green": "\u001b[32m", "blue": "\u001b[34m", "red": "\u001B[31m", "cyan": "\u001B[36m", "color_reset": "\u001b[0m"}
 BOLD_TEXT = {"begin": "\033[1m", "end": "\033[0m"}
 
 def get_columns_width(table, padding = 0):
@@ -12,19 +12,19 @@ def get_column_format(columns_width, separator):
     start, end = [separator] * 2
     return start + separator.join("{{:^{}}}".format(width) for width in columns_width) + end
 
-def print_horizontal_line(row_width, structural_element):
-    print(structural_element * row_width)
+def print_horizontal_line(row_width, separator):
+    print(separator * row_width)
 
 def print_menu_header():
-    print(f"""{COLORS['yellow']}========================================{COLORS['color_reset']}
-{COLORS['green']}     CUSTOMERS SYNC LIMITED COMPANY{COLORS['color_reset']}
-{COLORS['green']}      --- Internal Data System --- {COLORS['color_reset']}
-{COLORS['yellow']}========================================{COLORS['color_reset']}""")
+    print(f"{COLORS['yellow']}" + "=" * 40 + f"{COLORS['color_reset']}")
+    print(f"{COLORS['green']}" + "{:^40}".format("CUSTOMERS SYNC LIMITED COMPANY"))
+    print("{:^40}".format("--- Internal Data System ---"))
+    print(f"{COLORS['cyan']}" + "{:^40}".format("PERSONAL TERMINAL"))
+    print(f"{COLORS['yellow']}" + "=" * 40 + f"{COLORS['color_reset']}")
 
 def print_result_header():
-    print(f"""\n\n{COLORS['blue']}========================================{COLORS['color_reset']}
-{COLORS['blue']}         YOUR OPERATION RESULT{COLORS['color_reset']}
-{COLORS['blue']}========================================{COLORS['color_reset']}""")
+    print(f"\n\n\n{COLORS['blue']}{BOLD_TEXT['begin']}\n:.: YOUR OPERATION RESULT \u2193")
+    print("-" * 27 + f"{COLORS['color_reset']}")
 
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
@@ -42,8 +42,8 @@ def print_menu(title, list_options):
     print_menu_header()
     print(f"{BOLD_TEXT['begin']}{ title }:{BOLD_TEXT['end']}")
     for i in range(1, len(list_options)):
-        print(f"{COLORS['yellow']}{i}.{COLORS['color_reset']} { list_options[i] }")
-    print(f"{COLORS['yellow']}0.{COLORS['color_reset']} { list_options[0] }")
+        print(f"{COLORS['yellow']}({i}){COLORS['color_reset']} { list_options[i] }")
+    print(f"{COLORS['yellow']}(0){COLORS['color_reset']} { list_options[0] }")
 
 
 def print_message(message):
