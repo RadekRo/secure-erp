@@ -23,9 +23,9 @@ def print_menu_header():
     print(f"{COLORS['yellow']}" + "=" * 40 + f"{COLORS['color_reset']}")
 
 def print_result_header():
-    print(f"\n\n\n{BOLD_TEXT['begin']}{COLORS['blue']}" + "-" * 27)
-    print(":.: YOUR OPERATION RESULT \u2193")
-    print("-" * 27 + f"{COLORS['color_reset']}")
+    print(f"\n\n\n{BOLD_TEXT['begin']}{COLORS['blue']}" + "-" * 23)
+    print(":.:. SYSTEM ANSWER .:.:")
+    print("-" * 23 + f"{COLORS['color_reset']}")
 
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
@@ -114,4 +114,5 @@ def print_error_message(message):
     Args:
         message: str - the error message
     """
-    print(f"{BOLD_TEXT['begin']}{COLORS['red']}{message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
+    print_result_header()
+    print(f"{BOLD_TEXT['begin']}{COLORS['red']}ERROR: {message}{COLORS['color_reset']}{BOLD_TEXT['end']}")

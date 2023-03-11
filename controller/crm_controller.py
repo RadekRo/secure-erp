@@ -3,8 +3,6 @@ from view import terminal as view
 
 def list_customers():
     data = crm.load_data(1)
-    for line in data:
-        line.pop()
     view.print_table(data)
 
 
