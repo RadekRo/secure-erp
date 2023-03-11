@@ -24,7 +24,7 @@ def get_subscribed_emails():
     subscribed_emails_list = list()
     for user in users_list:
         user[3] == "1" and subscribed_emails_list.append(user[2])
-    view.print_general_results(subscribed_emails_list, "Subscribed customers emails")
+    view.print_general_results(subscribed_emails_list, "SUBSCRIBED CUSTOMERS EMAILS")
 
 def run_operation(option):
     if option == 1:
