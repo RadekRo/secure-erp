@@ -2,12 +2,9 @@ from model.hr import hr
 from model import util
 from view import terminal as view
 
-def switch_birthday_to_year_day(string):
-    birth_date = string.split("-")
-    day_int = int(birth_date[1])
-    month_int = int(birth_date[0])
+def switch_birthday_to_year_day(month_int, day_int):
     year_day = 0
-    year_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    year_days = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
     if month_int == 1:
         year_day = day_int
     else:
@@ -15,6 +12,16 @@ def switch_birthday_to_year_day(string):
             year_day += year_days[i]
         year_day += day_int
     return year_day
+
+def get_birthday_list(start_date):
+    birthday_list = list()
+    birthday = switch_birthday_to_year_day(start_date[0:1])
+    for i in range (1, 15):
+        birthday += 1
+        if birthday > 365:
+            birthday = 1
+        birthday_list.append(birthday)
+    return birthday_list
 
 def find_data(search_value, data):
     for i, row in enumerate(data):
@@ -78,7 +85,8 @@ def get_average_age():
 def next_birthdays():
     database = hr.load_data()
     date_input = view.get_input("Enter date in format (MM-DD)")
-    birthday_days = get_birthday_dates(date_input)
+    
+    #birthday_days = get_birthday_dates(date_input)
     view.print_error_message("Not implemented yet.")
 
 
