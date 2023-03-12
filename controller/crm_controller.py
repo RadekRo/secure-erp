@@ -48,9 +48,9 @@ def delete_customer():
         view.print_error_message("No user found with provided id.")
 
 def get_subscribed_emails():
-    users_list = crm.load_data()
+    database = crm.load_data()
     subscribed_emails_list = list()
-    for user in users_list:
+    for user in database:
         user[3] == "1" and subscribed_emails_list.append(user[2])
     view.print_general_results(subscribed_emails_list, "SUBSCRIBED CUSTOMERS EMAILS")
 
