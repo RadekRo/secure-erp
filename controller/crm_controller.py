@@ -40,11 +40,10 @@ def update_customer():
         view.print_error_message("No user found with provided id.")
 
 def delete_customer():
-    database = crm.load_data()
+    database = crm.load_data(1)
     user_id = view.get_input("Enter user id to delete")
     find_user = find_data(user_id, database)
     if find_user != False:
-        print(find_user[0])
         view.print_message(f"User id: {user_id} deleted from the database.")
         database.remove(database[find_user])
         crm.save_data(database) 
