@@ -12,3 +12,12 @@ from model import data_manager, util
 
 DATAFILE = "model/hr/hr.csv"
 HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
+
+def load_data(header = "no-header"):    
+    hr_data = data_manager.read_table_from_file(DATAFILE)
+    header == "with-header" and hr_data.insert(0, HEADERS)
+    return hr_data
+
+def save_data(incoming_data):
+    incoming_data.remove(incoming_data[0])
+    data_manager.write_table_to_file(DATAFILE, incoming_data)

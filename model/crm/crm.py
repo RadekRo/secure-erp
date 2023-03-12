@@ -12,9 +12,9 @@ DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
 def load_data(header = "no-header"):    
-    users_list = data_manager.read_table_from_file(DATAFILE)
-    header == "with-header" and users_list.insert(0, HEADERS)
-    return users_list
+    crm_data = data_manager.read_table_from_file(DATAFILE)
+    header == "with-header" and crm_data.insert(0, HEADERS)
+    return crm_data
 
 def save_data(incoming_data):
     incoming_data.remove(incoming_data[0])
