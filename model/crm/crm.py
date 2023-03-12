@@ -9,7 +9,6 @@ Data table structure:
 from model import data_manager, util
 
 DATAFILE = "model/crm/crm.csv"
-DATATEMP = "model/crm/temp.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
 def load_data(header = 0):    
@@ -18,4 +17,5 @@ def load_data(header = 0):
     return users_list
 
 def save_data(incoming_data):
-    data_manager.write_table_to_file(DATATEMP, incoming_data)
+    incoming_data.remove(incoming_data[0])
+    data_manager.write_table_to_file(DATAFILE, incoming_data)
