@@ -9,6 +9,11 @@ def find_data(search_value, data):
                 return i
     return False
 
+def get_single_user_data(headers, user_data):
+    user = list()
+    user.extend([headers, user_data])
+    return user
+
 def list_customers():
     database = crm.load_data("with-header")
     view.print_table(database)
@@ -18,11 +23,10 @@ def add_customer():
     user_data = view.get_inputs(database[0][1:])
     user_id = [util.generate_id()]
     new_user = user_id + user_data
-    show_user = list()
-    show_user.extend([database[0], new_user])
+    show_added_user = get_single_user_data(database[0], new_user)
     database.append(new_user)
     crm.save_data(database)
-    view.print_table(show_user)
+    view.print_table(show_added_user)
 
 def update_customer():
     database = crm.load_data("with-header")
