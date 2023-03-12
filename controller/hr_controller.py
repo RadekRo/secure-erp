@@ -93,7 +93,6 @@ def next_birthdays():
     birthday_list = get_birthday_list(date_input)
     for i in range (len(database)):
         database[i][2] in birthday_list and birthday_in_14_days.append(database[i][1])
-    print(birthday_in_14_days)
     if len(birthday_in_14_days) > 0:
         view.print_general_results(birthday_in_14_days, "EMPLOYEES WITH BIRTHDAY IN 14 DAYS")
     else:
@@ -102,10 +101,15 @@ def next_birthdays():
 def count_employees_with_clearance():
     view.print_error_message("Not implemented yet.")
 
-
 def count_employees_per_department():
-    view.print_error_message("Not implemented yet.")
-
+    database = hr.load_data()
+    departments_employees = dict()
+    for i in range(len(database)):
+        if database[i][3] in departments_employees:
+            departments_employees[database[i][3]] += 1
+        else:
+            departments_employees[database[i][3]] = 1
+    view.print_general_results(departments_employees, "EMPLOYEES NUMBER IN EACH DEPARTMENT")
 
 def run_operation(option):
     if option == 1:

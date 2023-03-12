@@ -51,6 +51,10 @@ def print_general_results(result, label):
     if isinstance(result, tuple):
         show_results = '; '.join(result)
         print(f"{label}:\n{show_results}")
+    if isinstance(result, dict):
+        print(f"{label}")
+        for key, value in result.items():
+            print(key,": ", value, sep="")
 
 def print_table(table):
     print_result_header()
