@@ -27,13 +27,12 @@ def add_customer():
 def update_customer():
     database = crm.load_data(1)
     user_id = view.get_input("Enter user id to edit")
-    if any(user_id in sublist for sublist in database):
+    find_user = find_data(user_id, database)
+    if find_user != False:
         user_data = view.get_inputs(database[0][1:])
-        for i in range(0, len(database) - 1):
-            if database[i].count(user_id) > 0:
-                database[i][1] = user_data[0]
-                database[i][2] = user_data[1]
-                database[i][3] = user_data[2]
+        database[find_user][1] = user_data[0]
+        database[find_user][2] = user_data[1]
+        database[find_user][3] = user_data[2]
         crm.save_data(database) 
         view.print_message(f"User id: {user_id} updated.")
     else:
