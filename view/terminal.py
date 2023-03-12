@@ -84,10 +84,10 @@ def print_table(table):
     columns_width = get_columns_width(table, 1)
     row_width = get_row_width(sum(columns_width), len(table[0]))
     column_format = get_column_format(columns_width, "|")
-    for row in table:
-        
-        print(column_format.format(*row))
+    for row in table:    
         print_horizontal_line(row_width, "-")
+        print(column_format.format(*row))
+    print_horizontal_line(row_width, "-")
 
 def get_input(label):
     """Gets single string input from the user.
@@ -105,9 +105,11 @@ def get_inputs(labels):
     Args:
         labels: list - the list of the labels to be displayed before each prompt
     """
-    print(labels)
-
-
+    user_inputs = list()
+    for label in labels:
+        user_input = input(f"Enter {label}: ")
+        user_inputs.append(user_input)
+    return user_inputs
 
 def print_error_message(message):
     """Prints an error message to the terminal.

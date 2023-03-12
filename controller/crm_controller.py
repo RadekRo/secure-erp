@@ -1,4 +1,5 @@
 from model.crm import crm
+from model import util
 from view import terminal as view
 
 def list_customers():
@@ -8,8 +9,9 @@ def list_customers():
 
 def add_customer():
     data = crm.load_data(1)
-    view.get_inputs(data[0][1:])
-
+    user_data = view.get_inputs(data[0][1:])
+    user_id = util.generate_id()
+    print(user_data, user_id)
 
 def update_customer():
     view.print_error_message("Not implemented yet.")
