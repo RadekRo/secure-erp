@@ -32,7 +32,7 @@ def update_customer():
         user_data = view.get_inputs(database[0][1:])
         database[find_user][1::] = user_data
         crm.save_data(database) 
-        view.print_message(f"User id: {user_id} updated.")
+        view.print_message(f"User of id: {user_id} has been updated.")
     else:
         view.print_error_message("No user found with provided id.")
 
