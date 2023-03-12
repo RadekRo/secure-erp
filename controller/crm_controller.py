@@ -10,11 +10,11 @@ def find_data(search_value, data):
     return False
 
 def list_customers():
-    database = crm.load_data(1)
+    database = crm.load_data("with-header")
     view.print_table(database)
 
 def add_customer():
-    database = crm.load_data(1)
+    database = crm.load_data("with-header")
     user_data = view.get_inputs(database[0][1:])
     user_id = [util.generate_id()]
     new_user = user_id + user_data
@@ -25,7 +25,7 @@ def add_customer():
     view.print_table(show_user)
 
 def update_customer():
-    database = crm.load_data(1)
+    database = crm.load_data("with-header")
     user_id = view.get_input("Enter user id to edit")
     find_user = find_data(user_id, database)
     if find_user != False:
@@ -37,7 +37,7 @@ def update_customer():
         view.print_error_message("No user found with provided id.")
 
 def delete_customer():
-    database = crm.load_data(1)
+    database = crm.load_data("with-header")
     user_id = view.get_input("Enter user id to delete")
     find_user = find_data(user_id, database)
     if find_user != False:
