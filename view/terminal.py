@@ -28,35 +28,15 @@ def print_result_header():
     print("-" * 23 + f"{COLORS['color_reset']}")
 
 def print_menu(title, list_options):
-    """Prints options in standard menu format like this:
-
-    Main menu:
-    (1) Store manager
-    (2) Human resources manager
-    (3) Inventory manager
-    (0) Exit program
-
-    Args:
-        title (str): the title of the menu (first row)
-        list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
-    """
     print_menu_header()
     print(f"{BOLD_TEXT['begin']}{ title }:{BOLD_TEXT['end']}")
     for i in range(1, len(list_options)):
         print(f"{COLORS['yellow']}({i}){COLORS['color_reset']} { list_options[i] }")
     print(f"{COLORS['yellow']}(0){COLORS['color_reset']} { list_options[0] }")
 
-
 def print_message(message):
-    """Prints a single message to the terminal.
-
-    Args:
-        message: str - the message
-    """
     print_result_header()
     print(f"{BOLD_TEXT['begin']}{COLORS['green']}{message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
-
-
 
 def print_general_results(result, label):
     """Prints out any type of non-tabular data.
@@ -69,19 +49,7 @@ def print_general_results(result, label):
         show_results = ', '.join(result)
         print(f"{label}:\n{show_results}")
 
-# /--------------------------------\
-# |   id   |   product  |   type   |
-# |--------|------------|----------|
-# |   0    |  Bazooka   | portable |
-# |--------|------------|----------|
-# |   1    | Sidewinder | missile  |
-# \-----------------------------------/
 def print_table(table):
-    """Prints tabular data like above.
-
-    Args:
-        table: list of lists - the table to print out
-    """
     print_result_header()
     columns_width = get_columns_width(table, 1)
     row_width = get_row_width(sum(columns_width), len(table[0]))
@@ -92,21 +60,10 @@ def print_table(table):
     print_horizontal_line(row_width, "-")
 
 def get_input(label):
-    """Gets single string input from the user.
-
-    Args:
-        label: str - the label before the user prompt
-    """
     user_input = input(f"{ label }: ")
     return user_input
 
-
 def get_inputs(labels):
-    """Gets a list of string inputs from the user.
-
-    Args:
-        labels: list - the list of the labels to be displayed before each prompt
-    """
     user_inputs = list()
     for label in labels:
         user_input = input(f"Enter {label}: ")
@@ -114,10 +71,5 @@ def get_inputs(labels):
     return user_inputs
 
 def print_error_message(message):
-    """Prints an error message to the terminal.
-
-    Args:
-        message: str - the error message
-    """
     print_result_header()
     print(f"{BOLD_TEXT['begin']}{COLORS['red']}ERROR: {message}{COLORS['color_reset']}{BOLD_TEXT['end']}")

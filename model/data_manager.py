@@ -1,6 +1,5 @@
 # Do not modify this file!
 
-
 def read_table_from_file(file_name, separator=';'):
     """Read CSV file into a data table.
 

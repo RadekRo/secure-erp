@@ -37,7 +37,7 @@ def update_customer():
         view.print_error_message("No user found with provided id.")
 
 def delete_customer():
-    database = crm.load_data("with-header")
+    database = crm.load_data("header")
     user_id = view.get_input("Enter user id to delete")
     find_user = find_data(user_id, database)
     if find_user != False:
@@ -70,7 +70,6 @@ def run_operation(option):
     else:
         raise KeyError("There is no such option.")
 
-
 def display_menu():
     options = ["Back to main menu",
                "List customers",
@@ -79,7 +78,6 @@ def display_menu():
                "Remove customer",
                "Subscribed customer emails"]
     view.print_menu("Customer Relationship Management", options)
-
 
 def menu():
     operation = None
