@@ -10,8 +10,16 @@ def list_customers():
 def add_customer():
     data = crm.load_data(1)
     user_data = view.get_inputs(data[0][1:])
-    user_id = util.generate_id()
-    print(user_data, user_id)
+    user_id = [util.generate_id()]
+    new_user = user_id + user_data
+    data.append(new_user)
+    crm.save_data(data)
+    show_user = list()
+    show_user.append(data[0])
+    show_user.append(new_user)
+    view.print_table(show_user)
+
+
 
 def update_customer():
     view.print_error_message("Not implemented yet.")
