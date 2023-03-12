@@ -52,8 +52,10 @@ def delete_employee():
         view.print_error_message("No employee found with provided id.")
 
 def get_oldest_and_youngest():
-    view.print_error_message("Not implemented yet.")
-
+    database = hr.load_data()
+    database.sort(key = lambda inner:inner[2])
+    oldest_youngest = (database[0][1], database[-1][1])
+    view.print_general_results(oldest_youngest, "OLDEST AND YOUNGEST EMPLOYEES ARE")
 
 def get_average_age():
     view.print_error_message("Not implemented yet.")

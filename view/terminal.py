@@ -48,6 +48,9 @@ def print_general_results(result, label):
     if isinstance(result, list):
         show_results = ', '.join(result)
         print(f"{label}:\n{show_results}")
+    if isinstance(result, tuple):
+        show_results = '; '.join(result)
+        print(f"{label}:\n{show_results}")
 
 def print_table(table):
     print_result_header()
