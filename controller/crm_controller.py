@@ -2,10 +2,10 @@ from model.crm import crm
 from model import util
 from view import terminal as view
 
-def find_data(lookup, data):
+def find_data(search_value, data):
     for i, row in enumerate(data):
         for j, element in enumerate(row):
-            if element == lookup:
+            if element == search_value:
                 return i
     return False
 
@@ -30,9 +30,7 @@ def update_customer():
     find_user = find_data(user_id, database)
     if find_user != False:
         user_data = view.get_inputs(database[0][1:])
-        database[find_user][1] = user_data[0]
-        database[find_user][2] = user_data[1]
-        database[find_user][3] = user_data[2]
+        database[find_user][1::] = user_data
         crm.save_data(database) 
         view.print_message(f"User id: {user_id} updated.")
     else:
