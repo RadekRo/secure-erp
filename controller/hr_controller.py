@@ -99,7 +99,14 @@ def next_birthdays():
         view.print_message("NO EMPLOYEES WILL HAVE BIRTHDAY WITHIN 14 DAYS.")
 
 def count_employees_with_clearance():
-    view.print_error_message("Not implemented yet.")
+    database = hr.load_data()
+    employees_counter = 0
+    for i in range(len(database)):
+        if int(database[i][4]) > 0:
+            employees_counter += 1 
+        else:
+            None
+    view.print_general_results(employees_counter, "EMPLOYEES WITH MINIMUM LEVEL 1 CLEARANCE")
 
 def count_employees_per_department():
     database = hr.load_data()
