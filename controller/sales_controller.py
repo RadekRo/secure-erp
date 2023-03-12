@@ -1,33 +1,94 @@
 from model.sales import sales
 from view import terminal as view
+from model import util
 
+def find_data(lookup, data):
+    for i, row in enumerate(data):
+        for j, element in enumerate(row):
+            if element == lookup:
+                return i
+    return False
 
 def list_transactions():
-    view.print_error_message("Not implemented yet.")
+    database = sales.load_data(1)
+    view.print_table(database)
 
 
 def add_transaction():
-    view.print_error_message("Not implemented yet.")
+    database = sales.load_data(1)
+    transaction_data = view.get_inputs(database[0][1:])
+    transaction_id = [util.generate_id()]
+    new_user = transaction_id + transaction_data
+    show_transaction = list()
+    show_transaction.extend([database[0], new_user])
+    database.append(new_user)
+    sales.save_data(database)
+    view.print_table(show_transaction)
 
 
 def update_transaction():
-    view.print_error_message("Not implemented yet.")
+    database = sales.load_data(1)
+    user_id = view.get_input("Enter transaction id to edit")
+    find_user = find_data(user_id, database)
+    if find_user != False:
+        transaction_data = view.get_inputs(database[0][1:])
+        database[find_user][1] = transaction_data[0]
+        database[find_user][2] = transaction_data[1]
+        database[find_user][3] = transaction_data[2]
+        database[find_user][4] = transaction_data[3]
+        sales.save_data(database) 
+        view.print_message(f"Transaction id: {user_id} updated.")
+    else:
+        view.print_error_message("No transaction found with provided id.")
 
 
 def delete_transaction():
-    view.print_error_message("Not implemented yet.")
+    database = sales.load_data(1)
+    transaction_id = view.get_input("Enter transaction id to delete")
+    find_transaction = find_data(transaction_id, database)
+    if find_transaction != False:
+        view.print_message(f"Transaction id: {transaction_id} deleted from the database.")
+        database.remove(database[find_transaction])
+        sales.save_data(database) 
+    else:
+        view.print_error_message("No transaction found with provided id.")
 
 
 def get_biggest_revenue_transaction():
-    view.print_error_message("Not implemented yet.")
+    current_biggest = 0
+    current_transaction = None
+    database = sales.load_data(0)
+    for transaction in database:
+        if float(transaction[3]) > current_biggest:
+            current_biggest = float(transaction[3])
+            current_transaction = transaction
+    view.print_message(f"Transaction id: {current_transaction[0]} is the biggest.")
+        
+
 
 
 def get_biggest_revenue_product():
-    view.print_error_message("Not implemented yet.")
+    database = sales.load_data(0)
+    product_dictionary = {}
+    for product in database:
+        product_price = float(product[3])
+        product_name = product[2]
+        if product_name in product_dictionary:
+           product_dictionary[product_name] = product_dictionary[product_name] + product_price
+        else:
+            product_dictionary[product_name] = product_price
+
+    view.print_message(f"Transaction id: {max(product_dictionary)} is the biggest.")
+   
+
 
 
 def count_transactions_between():
-    view.print_error_message("Not implemented yet.")
+    database = sales.load_data(0)
+    transction_count = 0
+    for product in database:
+        product_data = 
+        date_object = datetime.strptime(date_str, '%m-%d-%Y').date()
 
 
 def sum_transactions_between():
