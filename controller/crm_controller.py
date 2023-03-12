@@ -2,6 +2,13 @@ from model.crm import crm
 from model import util
 from view import terminal as view
 
+def find_data(lookup, data):
+    for i, row in enumerate(data):
+        for j, element in enumerate(row):
+            if element == lookup:
+                return i
+    return False
+
 def list_customers():
     database = crm.load_data(1)
     view.print_table(database)
@@ -18,16 +25,29 @@ def add_customer():
     view.print_table(show_user)
 
 def update_customer():
-    view.print_error_message("Not implemented yet.")
+    database = crm.load_data(1)
+    user_id = view.get_input("Enter user id to edit")
+    if any(user_id in sublist for sublist in database):
+        user_data = view.get_inputs(database[0][1:])
+        for i in range(0, len(database) - 1):
+            if database[i].count(user_id) > 0:
+                database[i][1] = user_data[0]
+                database[i][2] = user_data[1]
+                database[i][3] = user_data[2]
+        crm.save_data(database) 
+        view.print_message(f"User id: {user_id} updated.")
+    else:
+        view.print_error_message("No user found with provided id.")
 
 def delete_customer():
     database = crm.load_data()
     user_id = view.get_input("Enter user id to delete")
-    if any(user_id in sublist for sublist in database):
-        for i in range(0, len(database) - 1):
-           database[i].count(user_id) > 0 and database.remove(database[i])
-        crm.save_data(database) 
+    find_user = find_data(user_id, database)
+    if find_user != False:
+        print(find_user[0])
         view.print_message(f"User id: {user_id} deleted from the database.")
+        database.remove(database[find_user])
+        crm.save_data(database) 
     else:
         view.print_error_message("No user found with provided id.")
 

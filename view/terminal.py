@@ -54,7 +54,7 @@ def print_message(message):
         message: str - the message
     """
     print_result_header()
-    print(f"{BOLD_TEXT['begin']}{COLORS['green']}SUCCESS! {message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
+    print(f"{BOLD_TEXT['begin']}{COLORS['green']}{message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
 
 
 
