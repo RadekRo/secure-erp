@@ -85,12 +85,19 @@ def get_average_age():
     view.print_error_message("Not implemented yet.")
 
 def next_birthdays():
+    birthday_in_14_days = list()
     database = hr.load_data()
     for i in range (len(database)):
         database[i][2] = switch_birthday_to_year_day(database[i][2])
     date_input = view.get_input("Enter date in format (YYYY-MM-DD)")
     birthday_list = get_birthday_list(date_input)
-    print(birthday_list, database)
+    for i in range (len(database)):
+        database[i][2] in birthday_list and birthday_in_14_days.append(database[i][1])
+    print(birthday_in_14_days)
+    if len(birthday_in_14_days) > 0:
+        view.print_general_results(birthday_in_14_days, "EMPLOYEES WITH BIRTHDAY IN 14 DAYS")
+    else:
+        view.print_message("NO EMPLOYEES WILL HAVE BIRTHDAY WITHIN 14 DAYS.")
 
 def count_employees_with_clearance():
     view.print_error_message("Not implemented yet.")
