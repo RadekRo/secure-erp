@@ -1,22 +1,55 @@
 from model.hr import hr
+from model import util
 from view import terminal as view
 
+def find_data(search_value, data):
+    for i, row in enumerate(data):
+        for j, element in enumerate(row):
+            if element == search_value:
+                return i
+    return False
+
+def get_single_employee_data(headers, user_data):
+    user = list()
+    user.extend([headers, user_data])
+    return user
 
 def list_employees():
-    view.print_error_message("Not implemented yet.")
-
+    database = hr.load_data("with-header")
+    view.print_table(database)
 
 def add_employee():
-    view.print_error_message("Not implemented yet.")
-
+    database = hr.load_data("with-header")
+    employee_data = view.get_inputs(database[0][1:])
+    employee_id = [util.generate_id()]
+    new_employee = employee_id + employee_data
+    show_added_employee = get_single_employee_data(database[0], new_employee)
+    database.append(new_employee)
+    hr.save_data(database)
+    view.print_table(show_added_employee)
 
 def update_employee():
-    view.print_error_message("Not implemented yet.")
-
+    database = hr.load_data("with-header")
+    employee_id = view.get_input("Enter employee id to edit")
+    find_employee = find_data(employee_id, database)
+    if find_employee != False:
+        employee_data = view.get_inputs(database[0][1:])
+        database[find_employee][1::] = employee_data
+        hr.save_data(database) 
+        view.print_message(f"Employee of id: {employee_id} has been updated.")
+    else:
+        view.print_error_message("No employee found with provided id.")
 
 def delete_employee():
-    view.print_error_message("Not implemented yet.")
-
+    database = hr.load_data("header")
+    employee_id = view.get_input("Enter employee id to delete")
+    find_user = find_data(employee_id, database)
+    if find_user != False:
+        view.print_message(f"Employee id: {employee_id} deleted from the database.")
+        database.remove(database[find_user])
+        hr.save_data(database) 
+    else:
+        view.print_error_message("No employee found with provided id.")
 
 def get_oldest_and_youngest():
     view.print_error_message("Not implemented yet.")
