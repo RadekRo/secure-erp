@@ -41,12 +41,12 @@ def update_employee():
         view.print_error_message("No employee found with provided id.")
 
 def delete_employee():
-    database = hr.load_data("header")
+    database = hr.load_data("with-header")
     employee_id = view.get_input("Enter employee id to delete")
-    find_user = find_data(employee_id, database)
-    if find_user != False:
+    find_employee = find_data(employee_id, database)
+    if find_employee != False:
         view.print_message(f"Employee id: {employee_id} deleted from the database.")
-        database.remove(database[find_user])
+        database.remove(database[find_employee])
         hr.save_data(database) 
     else:
         view.print_error_message("No employee found with provided id.")
