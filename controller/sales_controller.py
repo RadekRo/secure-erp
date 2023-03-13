@@ -2,17 +2,16 @@ from model.sales import sales
 from view import terminal as view
 from model import util
 
-def find_data(lookup, data):
+def find_data(search_value, data):
     for i, row in enumerate(data):
         for j, element in enumerate(row):
-            if element == lookup:
+            if element == search_value:
                 return i
     return False
 
 def list_transactions():
     database = sales.load_data(1)
     view.print_table(database)
-
 
 def add_transaction():
     database = sales.load_data(1)
@@ -25,22 +24,20 @@ def add_transaction():
     sales.save_data(database)
     view.print_table(show_transaction)
 
-
 def update_transaction():
     database = sales.load_data(1)
-    user_id = view.get_input("Enter transaction id to edit")
-    find_user = find_data(user_id, database)
-    if find_user != False:
+    transaction_id = view.get_input("Enter transaction id to edit")
+    find_transaction = find_data(transaction_id, database)
+    if find_transaction != False:
         transaction_data = view.get_inputs(database[0][1:])
-        database[find_user][1] = transaction_data[0]
-        database[find_user][2] = transaction_data[1]
-        database[find_user][3] = transaction_data[2]
-        database[find_user][4] = transaction_data[3]
+        database[find_transaction][1] = transaction_data[0]
+        database[find_transaction][2] = transaction_data[1]
+        database[find_transaction][3] = transaction_data[2]
+        database[find_transaction][4] = transaction_data[3]
         sales.save_data(database) 
-        view.print_message(f"Transaction id: {user_id} updated.")
+        view.print_message(f"Transaction id: {transaction_id} updated.")
     else:
         view.print_error_message("No transaction found with provided id.")
-
 
 def delete_transaction():
     database = sales.load_data(1)
@@ -53,7 +50,6 @@ def delete_transaction():
     else:
         view.print_error_message("No transaction found with provided id.")
 
-
 def get_biggest_revenue_transaction():
     current_biggest = 0
     current_transaction = None
@@ -64,9 +60,6 @@ def get_biggest_revenue_transaction():
             current_transaction = transaction
     view.print_message(f"Transaction id: {current_transaction[0]} is the biggest.")
         
-
-
-
 def get_biggest_revenue_product():
     database = sales.load_data(0)
     product_dictionary = {}
@@ -74,26 +67,22 @@ def get_biggest_revenue_product():
         product_price = float(product[3])
         product_name = product[2]
         if product_name in product_dictionary:
-           product_dictionary[product_name] = product_dictionary[product_name] + product_price
+            product_dictionary[product_name] = product_dictionary[product_name] + product_price
         else:
             product_dictionary[product_name] = product_price
 
     view.print_message(f"Transaction id: {max(product_dictionary)} is the biggest.")
-   
 
-
-
-# def count_transactions_between():
+def count_transactions_between():
+    pass
 #     database = sales.load_data(0)
 #     transction_count = 0
 #     for product in database:
 #         product_data = 
 #         date_object = datetime.strptime(date_str, '%m-%d-%Y').date()
 
-
 def sum_transactions_between():
     view.print_error_message("Not implemented yet.")
-
 
 def run_operation(option):
     if option == 1:
@@ -117,7 +106,6 @@ def run_operation(option):
     else:
         raise KeyError("There is no such option.")
 
-
 def display_menu():
     options = ["Back to main menu",
                "List transactions",
@@ -129,7 +117,6 @@ def display_menu():
                "Count number of transactions between",
                "Sum the price of transactions between"]
     view.print_menu("Sales", options)
-
 
 def menu():
     operation = None
