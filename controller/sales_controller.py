@@ -17,10 +17,10 @@ def add_transaction():
     database = sales.load_data(1)
     transaction_data = view.get_inputs(database[0][1:])
     transaction_id = [util.generate_id()]
-    new_user = transaction_id + transaction_data
+    new_transaction = transaction_id + transaction_data
     show_transaction = list()
-    show_transaction.extend([database[0], new_user])
-    database.append(new_user)
+    show_transaction.extend([database[0], new_transaction])
+    database.append(new_transaction)
     sales.save_data(database)
     view.print_table(show_transaction)
 
@@ -30,10 +30,7 @@ def update_transaction():
     find_transaction = find_data(transaction_id, database)
     if find_transaction != False:
         transaction_data = view.get_inputs(database[0][1:])
-        database[find_transaction][1] = transaction_data[0]
-        database[find_transaction][2] = transaction_data[1]
-        database[find_transaction][3] = transaction_data[2]
-        database[find_transaction][4] = transaction_data[3]
+        database[find_transaction][1:5] = transaction_data[0:4]
         sales.save_data(database) 
         view.print_message(f"Transaction id: {transaction_id} updated.")
     else:
@@ -67,7 +64,7 @@ def get_biggest_revenue_product():
         product_price = float(product[3])
         product_name = product[2]
         if product_name in product_dictionary:
-            product_dictionary[product_name] = product_dictionary[product_name] + product_price
+            product_dictionary[product_name] += product_price
         else:
             product_dictionary[product_name] = product_price
 
