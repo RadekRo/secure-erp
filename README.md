@@ -13,7 +13,7 @@ The main idea is to not use any `import` in the whole project. The exception is 
 4. Damian Czyż
 
 #### Directories and files structure:
-
+```
 secure-erp/
 |
 -- controller/
@@ -43,6 +43,7 @@ secure-erp/
 .gitignore
 erp.py
 README.md
+```
 
 ##### Copyright Group 2. March 2023
 ##### Code might be reused under MIT License.
