@@ -81,6 +81,28 @@ def count_transactions_between():
 def sum_transactions_between():
     view.print_error_message("Not implemented yet.")
 
+def count_transactions_between():
+    database = sales.load_data(0)
+    start_date = view.get_input("Enter start date (YYYY-MM-DD): ")
+    end_date = view.get_input("Enter end date (YYYY-MM-DD): ")
+    transaction_count = 0
+    for transaction in database:
+        transaction_date = transaction[1]
+    if start_date <= transaction_date <= end_date:
+        transaction_count += 1
+    view.print_message(f"Number of transactions between {start_date} and {end_date}: {transaction_count}")
+
+def sum_transactions_between():
+    database = sales.load_data(0)
+    start_date = view.get_input("Enter start date (YYYY-MM-DD): ")
+    end_date = view.get_input("Enter end date (YYYY-MM-DD): ")
+    transaction_sum = 0
+    for transaction in database:
+        transaction_date = transaction[1]
+    if start_date <= transaction_date <= end_date:
+        transaction_sum += float(transaction[3])
+    view.print_message(f"Total revenue between {start_date} and {end_date}: {transaction_sum}")    
+
 def run_operation(option):
     if option == 1:
         list_transactions()
@@ -124,3 +146,4 @@ def menu():
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)
+
