@@ -45,5 +45,4 @@ erp.py
 README.md
 ```
 
-##### Copyright Group 2. March 2023
-##### Code might be reused under MIT License.
+##### Copyright Group 2. March 2023. MIT License.
