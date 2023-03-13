@@ -4,16 +4,16 @@ from view import terminal as view
 
 def switch_birthday_to_year_day(string):
     birth_date = string.split("-")
-    day_int = int(birth_date[2])
-    month_int = int(birth_date[1])
+    birth_date = list(map(int, birth_date))
+    month, day = birth_date[1:3]    
     year_day = 0
-    year_days = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
-    if month_int == 1:
-        year_day = day_int
+    year_days_list = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    if month == 1:
+        year_day = day
     else:
-        for i in range (month_int - 1):
-            year_day += year_days[i]
-        year_day += day_int
+        for i in range (month - 1):
+            year_day += year_days_list[i]
+        year_day += day
     return year_day
 
 def get_birthday_list(start_date):
