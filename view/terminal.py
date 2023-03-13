@@ -23,9 +23,9 @@ def print_menu_header():
     print(f"{COLORS['yellow']}" + "=" * 40 + f"{COLORS['color_reset']}")
 
 def print_result_header():
-    print(f"\n\n\n{BOLD_TEXT['begin']}{COLORS['blue']}" + "-" * 23)
-    print(":.:. SYSTEM ANSWER .:.:")
-    print("-" * 23 + f"{COLORS['color_reset']}")
+    print(f"\n\n\n{BOLD_TEXT['begin']}{COLORS['blue']}" + "-" * 19)
+    print(":.:. SYSTEM ANSWER:")
+    print("-" * 19 + f"{COLORS['color_reset']}")
 
 def print_menu(title, list_options):
     print_menu_header()

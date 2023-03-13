@@ -2,6 +2,12 @@ from model.hr import hr
 from model import util
 from view import terminal as view
 
+def filter_employees_birth_years(database):
+    birth_years_list = list()
+    for data in database:
+        birth_years_list.append(int(data[2][0:4]))
+    return birth_years_list
+
 def check_leap_year(year):
     return year%400 == 0 or (year%100 > 0 and year%4 == 0)
 
@@ -83,15 +89,20 @@ def get_oldest_and_youngest():
     view.print_general_results(oldest_youngest, "OLDEST AND YOUNGEST EMPLOYEES ARE")
 
 def get_average_age():
-    view.print_error_message("Not implemented yet.")
+    database = hr.load_data()
+    employees_birth_years = filter_employees_birth_years(database)
+    current_date = view.get_input("Enter current date in format (YYYY-MM-DD)")
+    count_employees = len(employees_birth_years)
+    average_age = ((int(current_date[0:4]) * count_employees) - sum(employees_birth_years)) / count_employees
+    view.print_general_results(average_age, "AVERAGE EMPLOYEES AGE")
 
 def next_birthdays():
     birthday_in_14_days = list()
     database = hr.load_data()
     for i in range (len(database)):
         database[i][2] = switch_birthday_to_year_day(database[i][2])
-    date_input = view.get_input("Enter date in format (YYYY-MM-DD)")
-    birthday_list = get_birthday_list(date_input)
+    current_date = view.get_input("Enter current date in format (YYYY-MM-DD)")
+    birthday_list = get_birthday_list(current_date)
     for i in range (len(database)):
         database[i][2] in birthday_list and birthday_in_14_days.append(database[i][1])
     if len(birthday_in_14_days) > 0:
