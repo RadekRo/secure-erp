@@ -2,12 +2,15 @@ from model.hr import hr
 from model import util
 from view import terminal as view
 
+def check_leap_year(year):
+    return year%400 == 0 or (year%100 > 0 and year%4 == 0)
+
 def switch_birthday_to_year_day(string):
-    birth_date = string.split("-")
-    birth_date = list(map(int, birth_date))
-    month, day = birth_date[1:3]    
     year_day = 0
     year_days_list = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    birth_date = string.split("-")
+    year, month, day = list(map(int, birth_date)) 
+    year_days_list[1] = 29 if check_leap_year(year) else 28 
     if month == 1:
         year_day = day
     else:
