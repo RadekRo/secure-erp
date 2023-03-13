@@ -7,16 +7,14 @@ def check_leap_year(year):
 
 def switch_birthday_to_year_day(string):
     year_day = 0
-    year_days_list = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    year_days_list = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     birth_date = string.split("-")
     year, month, day = list(map(int, birth_date)) 
     year_days_list[1] = 29 if check_leap_year(year) else 28 
     if month == 1:
         year_day = day
     else:
-        for i in range (month - 1):
-            year_day += year_days_list[i]
-        year_day += day
+        year_day = sum(year_days_list[:month - 1]) + day
     return year_day
 
 def get_birthday_list(start_date):
