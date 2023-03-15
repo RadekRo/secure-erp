@@ -56,7 +56,10 @@ def get_subscribed_emails():
     subscribed_emails_list = list()
     for user in database:
         user[3] == "1" and subscribed_emails_list.append(user[2])
-    view.print_general_results(subscribed_emails_list, "SUBSCRIBED CUSTOMERS EMAILS")
+    if len(subscribed_emails_list) > 0:
+        view.print_general_results(subscribed_emails_list, "SUBSCRIBED CUSTOMERS EMAILS")
+    else:
+        view.print_error_message("USERS WITH ACTIVE SUBSCRIPTION NOT FOUND!")
 
 def run_operation(option):
     if option == 1:

@@ -81,4 +81,4 @@ def get_inputs(labels):
 
 def print_error_message(message):
     print_result_header()
-    print(f"{BOLD_TEXT['begin']}{COLORS['red']}ERROR: {message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
+    print(f"{BOLD_TEXT['begin']}{COLORS['red']}{message}{COLORS['color_reset']}{BOLD_TEXT['end']}")
