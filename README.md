@@ -9,8 +9,8 @@ The main idea is to not use any `import` in the whole project. The exception is 
 #### Contributors:
 1. Radosław Rocławski
 2. Adrian Paszek
-3. Sofia Savchenko
-4. Damian Czyż
+3. Damian Czyż
+4. Sofia Savchenko
 
 #### Directories and files structure:
 ```
