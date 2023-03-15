@@ -55,7 +55,7 @@ def get_biggest_revenue_transaction():
         if float(transaction[3]) > current_biggest:
             current_biggest = float(transaction[3])
             current_transaction = transaction
-    view.print_message(f"Transaction id: {current_transaction[0]} is the biggest.")
+    view.print_message(f"Transaction with id: {current_transaction[0]} is the biggest.")
         
 def get_biggest_revenue_product():
     database = sales.load_data(0)
@@ -68,7 +68,7 @@ def get_biggest_revenue_product():
         else:
             product_dictionary[product_name] = product_price
 
-    view.print_message(f"Transaction id: {max(product_dictionary)} is the biggest.")
+    view.print_message(f"Product: {max(product_dictionary)} had the biggest revenue.")
 
 def count_transactions_between():
     pass
