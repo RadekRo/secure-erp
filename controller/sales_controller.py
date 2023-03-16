@@ -71,17 +71,6 @@ def get_biggest_revenue_product():
     view.print_message(f"Product: {max(product_dictionary)} had the biggest revenue.")
 
 def count_transactions_between():
-    pass
-#     database = sales.load_data(0)
-#     transction_count = 0
-#     for product in database:
-#         product_data = 
-#         date_object = datetime.strptime(date_str, '%m-%d-%Y').date()
-
-def sum_transactions_between():
-    view.print_error_message("Not implemented yet.")
-
-def count_transactions_between():
     database = sales.load_data(0)
     start_date = view.get_input("Enter start date (YYYY-MM-DD): ")
     end_date = view.get_input("Enter end date (YYYY-MM-DD): ")
