@@ -67,7 +67,6 @@ def get_biggest_revenue_product():
             product_dictionary[product_name] += product_price
         else:
             product_dictionary[product_name] = product_price
-
     view.print_message(f"Product: {max(product_dictionary)} had the biggest revenue.")
 
 def count_transactions_between():
@@ -76,9 +75,9 @@ def count_transactions_between():
     end_date = view.get_input("Enter end date (YYYY-MM-DD): ")
     transaction_count = 0
     for transaction in database:
-        transaction_date = transaction[1]
-    if start_date <= transaction_date <= end_date:
-        transaction_count += 1
+        transaction_date = transaction[4]
+        if start_date <= transaction_date <= end_date:
+            transaction_count += 1
     view.print_message(f"Number of transactions between {start_date} and {end_date}: {transaction_count}")
 
 def sum_transactions_between():
